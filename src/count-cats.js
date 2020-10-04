@@ -6,6 +6,6 @@ module.exports = function countCats(/* matrix */) {
     if(element == '^^') count++; 
     return element
   }
-    ))
+    ));
   return count;
 };
