@@ -7,5 +7,5 @@ module.exports = function countCats(/* matrix */) {
     return element
   }
     ));
-  return count;
+  return Number(count);
 };
