@@ -5,3 +5,5 @@ module.exports = function createDreamTeam(members) {
   return members.reduce((accumulator, value) => typeof value === 'string' ? accumulator + value.trim()[0] : accumulator, "")
   .toUpperCase().split('').sort().join('')
 };
+
+// +
