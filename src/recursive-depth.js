@@ -5,3 +5,5 @@ module.exports = class DepthCalculator {
     return arr.every(element => !Array.isArray(element)) ? 1 : this.calculateDepth(arr.flat()) + 1;
   }
 };
+
+// +
