@@ -13,3 +13,5 @@ module.exports = function dateSample(sampleActivity) {
   const t = Math.log(MODERN_ACTIVITY/activity)/k
   return Math.ceil(t)
 };
+
+// +
