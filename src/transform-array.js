@@ -1,9 +1,7 @@
 const CustomError = require("../extensions/custom-error");
 
 module.exports = function transform(arr) {
-  
-  throw new CustomError('Not implemented');
-  /* if(!Array.isArray(arr)) throw Exception;
+  if(!Array.isArray(arr)) throw Exception;
   const control_sequences = [
     '--discard-next',
     '--discard-prev',
@@ -19,6 +17,7 @@ module.exports = function transform(arr) {
       case control_sequences[3]:if(i > 0) result.push(arr[i - 1]);break;
       default: result.push(arr[i]);
     }
-  return result; */
+  return result;
 };
+
 // < 3
