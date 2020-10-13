@@ -7,10 +7,14 @@ const chainMaker = {
    return length
   },
   addLink(value) {
-    this.chain.push(value)
+    value === undefined ? this.chain.push('') : this.chain.push(` ${value}`)
     return this
   },
   removeLink(position) {
+    if(!Number.isInteger(position)) {
+      this.chain = []
+      throw Error
+    }
     this.chain.splice(position - 1, 1)
     return this
   },
@@ -19,11 +23,11 @@ const chainMaker = {
     return this;
   },
   finishChain() {
-    return this.chain.map(element => `( ${element} )`).join('~~');
+    const result = this.chain.map(element => `(${element} )`).join('~~')
+    this.chain = []
+    return result
   }
   
 };
 
 module.exports = chainMaker;
-
-//3
