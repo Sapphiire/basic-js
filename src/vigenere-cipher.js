@@ -27,8 +27,9 @@ class VigenereCipheringMachine {
   decrypt(message, key) {
     if(message === undefined || key === undefined) throw Error;
     const new_key = key.toUpperCase().split('').map(element => this.alphabet[(this.alphabet.length - this.alphabet.indexOf(element)) % 26]).join('')
-    return this.encrypt(message, new_key)
-  }
+    const result = this.encrypt(message, new_key)
+    return !this.direct ? result : result.split('').reverse().join('')
+    }
 }
 
 module.exports = VigenereCipheringMachine;
