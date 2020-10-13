@@ -1,14 +1,12 @@
 const CustomError = require("../extensions/custom-error");
 
 module.exports = function getSeason(date) {
-  if(typeof date != Date) throw Error;
+  if(!(date instanceof Date)) return false;
   const month = date.getMonth()
   let season;
-  if(month == 12 && month <= 2) season = 'winter';
-  else if(month >= 3 && month <= 5) season = 'spring';
-  else if(month >= 6 && month <= 8) season = 'summer';
-  else if(month >= 9 && month <= 11) season = 'autumn';
+  if(month == 11 || month <= 1) season = 'winter';
+  else if(month >= 2 && month <= 4) season = 'spring';
+  else if(month >= 5 && month <= 7) season = 'summer';
+  else if(month >= 8 && month <= 10) season = 'autumn';
   return season;
 };
-
-// 5
