@@ -26,7 +26,7 @@ class VigenereCipheringMachine {
 
   decrypt(message, key) {
     if(message === undefined || key === undefined) throw Error;
-    const new_key = key.toUpperCase().split('').map(element => this.alphabet[26 - this.alphabet.indexOf(element)]).join('')
+    const new_key = key.toUpperCase().split('').map(element => this.alphabet[(this.alphabet.length - this.alphabet.indexOf(element)) % 26]).join('')
     return this.encrypt(message, new_key)
   }
 }
