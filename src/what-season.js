@@ -10,3 +10,5 @@ module.exports = function getSeason(date) {
   else if(month >= 9 && month <= 11) season = 'autumn';
   return season;
 };
+
+// 5
