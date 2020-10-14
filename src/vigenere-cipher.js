@@ -6,7 +6,8 @@ class VigenereCipheringMachine {
   alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
   constructor(boolean) {
-    this.direct = boolean
+    if(boolean != undefined)
+      this.direct = boolean
   }
 
   encrypt(message, key) {
@@ -16,34 +17,21 @@ class VigenereCipheringMachine {
     const result = message.toUpperCase().split('').reduce((accumulator, currentValue) => {
       if(this.alphabet.includes(currentValue)) {
         idx = idx == key.length ? 0 : idx
-        return accumulator + this.alphabet[(this.alphabet.indexOf(currentValue) + this.alphabet.indexOf(upper_key[idx++])) % 26]
+        return this.direct ? accumulator + this.alphabet[(this.alphabet.indexOf(currentValue) + this.alphabet.indexOf(upper_key[idx++])) % 26] : 
+                            this.alphabet[(this.alphabet.indexOf(currentValue) + this.alphabet.indexOf(upper_key[idx++])) % 26] + accumulator  
       }
       else
-        return accumulator + currentValue;
+        return this.direct ? accumulator + currentValue : currentValue + accumulator;
     }, "")
-    return this.direct == true ? result : result.split('').reverse().join('')
+    return result
   }    
 
   decrypt(message, key) {
     if(message === undefined || key === undefined) throw Error;
     const new_key = key.toUpperCase().split('').map(element => this.alphabet[(this.alphabet.length - this.alphabet.indexOf(element)) % 26]).join('')
     const result = this.encrypt(message, new_key)
-    return !this.direct ? result : result.split('').reverse().join('')
+    return result
   }
 }
-
-const directMachine = new VigenereCipheringMachine();
-const reverseMachine = new VigenereCipheringMachine(false);
-
-const testStr = "ATTACK AT DAWN!";
-const reversedTestStr = testStr.split('').reverse().join('');
-const testKey = "alphonse"
-const encrypted = reverseMachine.encrypt(reversedTestStr, testKey);
-console.log(encrypted)
-const reversedEncrypted = encrypted.split('').reverse().join('');
-console.log(reversedEncrypted)
-
-console.log(reverseMachine.decrypt(reversedEncrypted, testKey))
-console.log(testStr)
 
 module.exports = VigenereCipheringMachine;
