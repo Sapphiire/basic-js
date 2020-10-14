@@ -21,14 +21,14 @@ class VigenereCipheringMachine {
       else
         return accumulator + currentValue;
     }, "")
-    return !this.direct ? result : result.split('').reverse().join('')
+    return this.direct == true ? result : result.split('').reverse().join('')
   }    
 
   decrypt(message, key) {
     if(message === undefined || key === undefined) throw Error;
     const new_key = key.toUpperCase().split('').map(element => this.alphabet[(this.alphabet.length - this.alphabet.indexOf(element)) % 26]).join('')
     const result = this.encrypt(message, new_key)
-    return this.direct ? result : result.split('').reverse().join('')
+    return result
   }
 }
 
